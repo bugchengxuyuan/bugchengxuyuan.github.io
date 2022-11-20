@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>String类面试相关知识点 | Hexo</title><meta name="author" content="爱敲bug的程序猿"><meta name="copyright" content="爱敲bug的程序猿"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="&#x3D;&#x3D; 操作符概述 &#x3D;&#x3D; 是Java操作符的一种，他有两种比较方式，一种是基本数据类型的比较，一种是引用数据类型的比较  基本数据类型 对于基本数据类型，&#x3D;&#x3D;判断的是两边的值是否相等  注：操作符比较的双方可以是不同的基本数据类型    引用数据类型 对于引用数据类型，&#x3D;&#x3D; 判断的是两边的内存引用是否相等，即判断两边的内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String类面试相关知识点">
+<meta property="og:url" content="http://example.com/2022/11/18/String%E7%B1%BB%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&#x3D;&#x3D; 操作符概述 &#x3D;&#x3D; 是Java操作符的一种，他有两种比较方式，一种是基本数据类型的比较，一种是引用数据类型的比较  基本数据类型 对于基本数据类型，&#x3D;&#x3D;判断的是两边的值是否相等  注：操作符比较的双方可以是不同的基本数据类型    引用数据类型 对于引用数据类型，&#x3D;&#x3D; 判断的是两边的内存引用是否相等，即判断两边的内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-18T02:24:16.000Z">
+<meta property="article:modified_time" content="2022-11-20T05:18:59.730Z">
+<meta property="article:author" content="爱敲bug的程序猿">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/11/18/String%E7%B1%BB%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'String类面试相关知识点',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-20 13:18:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom@1.0.0.css"><link rel="stylesheet" href="/css/universe.css""><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">String类面试相关知识点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-18T02:24:16.000Z" title="发表于 2022-11-18 10:24:16">2022-11-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-20T05:18:59.730Z" title="更新于 2022-11-20 13:18:59">2022-11-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="String类面试相关知识点"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="x3D-x3D-操作符"><a href="#x3D-x3D-操作符" class="headerlink" title="&#x3D;&#x3D; 操作符"></a>&#x3D;&#x3D; 操作符</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+<li>&#x3D;&#x3D; 是Java操作符的一种，他有两种比较方式，一种是基本数据类型的比较，一种是引用数据类型的比较</li>
+</ol>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ol>
+<li><p>对于基本数据类型，&#x3D;&#x3D;判断的是两边的值是否相等</p>
+<blockquote>
+<p>注：<code>操作符比较的双方可以是不同的基本数据类型</code></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><ol>
+<li>对于引用数据类型，&#x3D;&#x3D; 判断的是两边的内存引用是否相等，即判断两边的内存引用是否指向同一片地址值</li>
+</ol>
+<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ol>
+<li><p>equals()是Object类中的一个方法，equals()只能比较对象，equals()判断的是双方的值是否相等</p>
+</li>
+<li><p>如果没有重写Object类中的equals()，那么equals()判断的是双方对象的地址值是否相同，而对象的地址值是唯一的，即如果不重写Object类中的equals()，那么比较对象的结果永远是返回false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>equals 用作对象之间的比较具有如下特性</p>
+<ul>
+<li><code>自反性</code>：对于任何非空引用 x 来说，x.equals(x) 应该返回 true。</li>
+<li><code>对称性</code>：对于任何非空引用 x 和 y 来说，若x.equals（y）为 true，则y.equals（x）也为 true。</li>
+<li><code>传递性</code>：对于任何非空引用的值来说，有三个值，x、y 和 z，如果x.equals(y) 返回true，y.equals(z) 返回true，那么x.equals(z) 也应该返回true。</li>
+<li><code>一致性</code>：对于任何非空引用 x 和 y 来说，如果 x.equals(y) 相等的话，那么它们必须始终相等。</li>
+<li><code>非空性</code>：对于任何非空引用的值 x 来说，x.equals(null) 必须返回 false。</li>
+</ul>
+</li>
+</ol>
+<h2 id="String-和-equals"><a href="#String-和-equals" class="headerlink" title="String 和 equals()"></a>String 和 equals()</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><ol>
+<li><p>String类是被final关键字所修饰的，所以String类是不可以被任何类继承</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">String</span></span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">java</span>.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>String是不可变的，任何对String字符串进行的修改，都是在创建一个新的字符串对象</p>
+</li>
+</ol>
+<h3 id="String-中的-equals-是如何重写的"><a href="#String-中的-equals-是如何重写的" class="headerlink" title="String 中的 equals 是如何重写的"></a>String 中的 equals 是如何重写的</h3><ol>
+<li><p>equals 方法是 Object 类定义的方法，Object 是所有类的父类，当然也包括 String，String 重写了 <code>equals</code> 方法，下面我们来看看是怎么重写的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">String</span></span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">java</span>.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">char</span> value[];</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object anObject)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == anObject) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">anotherString</span> <span class="operator">=</span> (String)anObject;</span><br><span class="line">            <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> value.length;</span><br><span class="line">            <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">                <span class="type">char</span> v1[] = value;</span><br><span class="line">                <span class="type">char</span> v2[] = anotherString.value;</span><br><span class="line">                <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>判断两个对象的引用是否指向同一片地址值，如果是则直接返回false。</p>
+</li>
+<li><p>判断所比较的对象的运行时类型是否是String，如果不是则直接返回false。</p>
+</li>
+<li><p>判断字符串的长度是否相等，如果连字符串的长度都不相等，那么就没有比较的必要，直接返回false。</p>
+</li>
+<li><p>如果比较的字符串的长度是相等，那么就一个一个字符进行比较，如果不相同，直接返回false。</p>
+</li>
+</ul>
+</li>
+<li><p>流程图</p>
+<img src="https://imgs.wiki/imgs/2022/11/18/05ae91b743058fed.png" alt="流程图" style="zoom: 33%;" />
+</li>
+<li><p>这里再提示一下，你可能有疑惑什么时候是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">this</span> == anObject) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个判断语句如何才能返回 true？因为都是字符串啊，字符串比较的不都是堆空间吗，猛然一看发现好像永远也不会走，但是你忘记了 <code>String.intern()</code> 方法，它表示的概念在不同的 JDK 版本有不同的区分在 JDK1.7 及以后调用 intern 方法是判断运行时常量池中是否有指定的字符串，如果没有的话，就把字符串添加到常量池中，并返回常量池中的对象。</p>
+<p>验证过程如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">StringOverrideEquals</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">  <span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;aa&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">  <span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line"></span><br><span class="line">  System.out.println(s1.intern().equals(s1));</span><br><span class="line">  System.out.println(s1.intern().equals(s2));</span><br><span class="line">  System.out.println(s3.intern().equals(s1));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>首先 <code>s1.intern().equals(s1)</code>返回的是true，因为equals()判断的是对象的值是否是相等，由于 <code>s1.intern()</code>返回的是常量池对象，而引用<code>s1</code>也是指向常量池。</li>
+<li>第二条语句由于 <code>s1.intern()</code>,返回的常量池对象，<code>s1</code>的引用是指向常量池开辟的内存空间，而<code>s2</code>的引用是指向堆，所以返回false。</li>
+<li>第三条语句虽然 <code>s3</code>的引用是指向堆的，但是 <code>s3.intern()</code>返回的是常量池当中的引用，在 <code>new String(&quot;aaa&quot;)</code>时，堆中开辟的内存空间的引用存储的其实是指向常量池内存区域的地址值，所以<br><code>s3.intern().equals(s1)</code> 的结果是返回true。</li>
+</ul>
+</li>
+</ol>
+<h2 id="为什么重写equals必须重写hashCode"><a href="#为什么重写equals必须重写hashCode" class="headerlink" title="为什么重写equals必须重写hashCode()"></a>为什么重写equals必须重写hashCode()</h2><h3 id="hashCode-的作用"><a href="#hashCode-的作用" class="headerlink" title="hashCode()的作用"></a>hashCode()的作用</h3><ol>
+<li>未重写Object中的hashCode时，它的作用主要是根据当前对象的地址值返回一个整形的hash值，如果没有重写Object中的hashCode，那么不同对象调用hashCode()时，返回的hash值是不同的</li>
+<li>在Java中，为了提高查询的效率，往往使用hashcode()来确定元素的保存位置</li>
+</ol>
+<h3 id="重写equals不重写hashCode-会怎样？"><a href="#重写equals不重写hashCode-会怎样？" class="headerlink" title="重写equals不重写hashCode()会怎样？"></a>重写equals不重写hashCode()会怎样？</h3><p>以下Sudent类只重写了，Object的equals方法，没有重写hashCode方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> string name;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> ll <span class="title function_">getclass</span><span class="params">(） != o.getclass()</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> (Student） o;</span><br><span class="line">        <span class="keyword">return</span> objects.equaLs(name, student,name) &amp;&amp;</span><br><span class="line">             objects.equals(id,student.id)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">       <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;小明&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       <span class="type">Student</span> <span class="variable">student1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;小明&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       system.out.println(<span class="string">&quot;判断两个对象是否相等：”+ student.equals(student1));</span></span><br><span class="line"><span class="string">       system.out.println(”第1个对象的hash值：”+ student.hashcode());</span></span><br><span class="line"><span class="string">       system.out.println(&quot;</span>第<span class="number">2</span>个对象的hash值：” + student1.hashcode());</span><br><span class="line">       system.out.println(<span class="string">&quot;两个对象的hash值是否相等：&quot;</span>+(student.hashcode(）s student1.hashcode()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">判断两个对象是否相等：true</span><br><span class="line">第1个对象的hash值：1725154839</span><br><span class="line">第2个对象的hash值：1670675563</span><br><span class="line">两个对象的hash值是否相等：false</span><br></pre></td></tr></table></figure>
+
+<p>按照我们的常规理解，只要两个学生对象的id和name是一样的，我们就可以认为这两个学生对象指的是同一个人，因此重写了equals()，让Student对象只要name和id相同就返回true，而且并没有重写hashCode()。</p>
+<p>在测试中，新建了两个Student对象，并且让他们的id和name完全一样，在调用equals方法时，返回为true，说明这两个对象时相等的。但是由于没有重写hashCode()法，所以这两个对象调用的hashCode()还是Object类的hashCode()，所以他们的值并不相等。</p>
+<blockquote>
+<p>结论：</p>
+<ol>
+<li><code>如果只重写equals()而不重写hashcode()，那么会导致equals方法返回为true，而hashCode方法却返回不同的结果。</code></li>
+</ol>
+</blockquote>
+<p>那么这样会有什么影响呢？</p>
+<p>在java底层的集合框架中（如HashMap，HashSet等），为了提高查询的效率，在确定某个对象的存储位置时，往往需要通过调用对象的hashCode方法来实现。</p>
+<p>例如在上例中，我们把新建出来的两个Student对象放入HashSet集合中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Hashset</span> <span class="variable">set</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Hashset</span>(</span><br><span class="line">set.add(student);</span><br><span class="line">set.add(student1);</span><br><span class="line">system.out.println(<span class="string">&quot;set内对象的数量：&quot;</span>+ set.size());</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set内对象的数量：2</span><br></pre></td></tr></table></figure>
+
+<p>照我们主观理解，这两个对象equals为true，那么HashSet应该主动帮我们去重，最终的HashSet中应该只保留1个对象，即最终输出的HashSet的size为1，但是我们得到的结果却是2</p>
+<p>之所以会产生这种结果，是因为HashSet的底层其实时数组结构，当需要把一个对象放进去时，会先调用这个对象的hashCode方法，并对返回的结果进行处理，最终得出该对象在HashSet中的具体位置。</p>
+<p>由于Student没有重写hashCode方法，所以即使equals判断为true，但是他们保存的位置在底层数组上时不一样的，不会触发HashSet的去重功能，而对于程序员来说，两个相同的对象却会在HashSet中出现多次。</p>
+<h2 id="String-s1-x3D-new-String-“abc”-在内存中创建了几个对象"><a href="#String-s1-x3D-new-String-“abc”-在内存中创建了几个对象" class="headerlink" title="String s1 &#x3D; new String(“abc”) 在内存中创建了几个对象"></a>String s1 &#x3D; new String(“abc”) 在内存中创建了几个对象</h2><p>一个或者两个，String s1 是声明了一个 String 类型的 s1 变量，它不是对象。使用 <code>new</code> 关键字会在堆中创建一个对象，另外一个对象是 <code>abc</code> ，它会在常量池中创建，所以一共创建了两个对象；如果 abc 在常量池中已经存在的话，那么就会创建一个对象</p>
+<h2 id="String-为什么是不可变的、jdk-源码中的-String-如何定义的、为什么这么设计。"><a href="#String-为什么是不可变的、jdk-源码中的-String-如何定义的、为什么这么设计。" class="headerlink" title="String 为什么是不可变的、jdk 源码中的 String 如何定义的、为什么这么设计。"></a>String 为什么是不可变的、jdk 源码中的 String 如何定义的、为什么这么设计。</h2><p>首先了解一下什么是<code>不可变对象</code>，不可变对象就是一经创建后，其对象的内部状态不能被修改，啥意思呢？也就是说不可变对象需要遵守下面几条原则</p>
+<ul>
+<li>不可变对象的内部属性都是 final 的</li>
+<li>不可变对象的内部属性都是 private 的</li>
+<li>不可变对象不能提供任何可以修改内部状态的方法、setter 方法也不行</li>
+<li>不可变对象不能被继承和扩展</li>
+</ul>
+<p>与其说问 String 为什么是不可变的，不如说如何把 String 设计成不可变的。</p>
+<p>String 类是一种对象，它是独立于 Java 基本数据类型而存在的，String 你可以把它理解为字符串的集合，String 被设计为 final 的，表示 String 对象一经创建后，它的值就不能再被修改，任何对 String 值进行修改的方法就是重新创建一个字符串。String 对象创建后会存在于运行时常量池中，运行时常量池是属于方法区的一部分，JDK1.7 后把它移到了堆中。</p>
+<p>不可变对象不是真的不可变，可以通过<code>反射</code>来对其内部的属性和值进行修改，不过一般我们不这样做。</p>
+<h2 id="String、StringBuilder-和-StringBuffer-有什么区别"><a href="#String、StringBuilder-和-StringBuffer-有什么区别" class="headerlink" title="String、StringBuilder 和 StringBuffer 有什么区别"></a>String、StringBuilder 和 StringBuffer 有什么区别</h2><p>String 特指的是 Java 中的字符串，String 类位于 <code>java.lang</code> 包下，String 类是由 final 修饰的，String 字符串一旦创建就不能被修改，任何对 String 进行修改的操作都相当于重新创建了一个字符串。String 字符串的底层使用 StringBuilder 来实现的</p>
+<p>StringBuilder 位于 <code>java.util</code> 包下，StringBuilder 是一非线程安全的容器，StringBuilder 的 append 方法常用于字符串拼接，它的拼接效率要比 String 中 <code>+</code> 号的拼接效率高。StringBuilder 一般不用于并发环境</p>
+<p>StringBuffer 位于 <code>java.util</code> 包下，StringBuffer 是一个线程安全的容器，多线程场景下一般使用 StringBuffer 用作字符串的拼接</p>
+<p>StringBuilder 和 StringBuffer 都是继承于AbstractStringBuilder 类，AbstractStringBuilder 类实现了 StringBuffer 和 StringBuilder 的常规操作。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">爱敲bug的程序猿</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/11/18/String%E7%B1%BB%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">http://example.com/2022/11/18/String%E7%B1%BB%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/11/20/Java%E5%85%B3%E9%94%AE%E5%AD%97/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java关键字</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/15/%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%8C%BA%E5%88%AB/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">值传递和引用传递的区别</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">爱敲bug的程序猿</div><div class="author-info__description">一个即将实习的大三学生</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://haiyong.site/moyu/"><i class="iconfont icon-youxishoubing"></i><span>关于我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">联</font> <font color="#e66d98">系</font> <font color="#e66cc6">方</font> <font color="#cc6de6">式</font></b> <p align="center"><img src="https://img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center">微信号：a15916656826</p> <p align="center">QQ号：2768615724</p> <p align="center">谷歌邮箱：j3260461@gmail.com</p></div></div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#x3D-x3D-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.</span> <span class="toc-text">&#x3D;&#x3D; 操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">引用数据类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals"><span class="toc-number">2.</span> <span class="toc-text">equals</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String-%E5%92%8C-equals"><span class="toc-number">3.</span> <span class="toc-text">String 和 equals()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-%E4%B8%AD%E7%9A%84-equals-%E6%98%AF%E5%A6%82%E4%BD%95%E9%87%8D%E5%86%99%E7%9A%84"><span class="toc-number">3.2.</span> <span class="toc-text">String 中的 equals 是如何重写的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals%E5%BF%85%E9%A1%BB%E9%87%8D%E5%86%99hashCode"><span class="toc-number">4.</span> <span class="toc-text">为什么重写equals必须重写hashCode()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashCode-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">hashCode()的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99equals%E4%B8%8D%E9%87%8D%E5%86%99hashCode-%E4%BC%9A%E6%80%8E%E6%A0%B7%EF%BC%9F"><span class="toc-number">4.2.</span> <span class="toc-text">重写equals不重写hashCode()会怎样？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String-s1-x3D-new-String-%E2%80%9Cabc%E2%80%9D-%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%BA%86%E5%87%A0%E4%B8%AA%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">String s1 &#x3D; new String(“abc”) 在内存中创建了几个对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84%E3%80%81jdk-%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84-String-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E7%9A%84%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">String 为什么是不可变的、jdk 源码中的 String 如何定义的、为什么这么设计。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E3%80%81StringBuilder-%E5%92%8C-StringBuffer-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">String、StringBuilder 和 StringBuffer 有什么区别</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" title="动态代理"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="动态代理"/></a><div class="content"><a class="title" href="/2022/11/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" title="动态代理">动态代理</a><time datetime="2022-11-20T05:20:03.000Z" title="发表于 2022-11-20 13:20:03">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/%E5%BC%82%E5%B8%B8%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/" title="异常相关面试知识"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="异常相关面试知识"/></a><div class="content"><a class="title" href="/2022/11/20/%E5%BC%82%E5%B8%B8%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/" title="异常相关面试知识">异常相关面试知识</a><time datetime="2022-11-20T05:19:29.000Z" title="发表于 2022-11-20 13:19:29">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="集合面试相关知识"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="集合面试相关知识"/></a><div class="content"><a class="title" href="/2022/11/20/%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="集合面试相关知识">集合面试相关知识</a><time datetime="2022-11-20T05:10:07.000Z" title="发表于 2022-11-20 13:10:07">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/%E6%96%B9%E6%B3%95%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="方法面试相关知识"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="方法面试相关知识"/></a><div class="content"><a class="title" href="/2022/11/20/%E6%96%B9%E6%B3%95%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="方法面试相关知识">方法面试相关知识</a><time datetime="2022-11-20T05:08:53.000Z" title="发表于 2022-11-20 13:08:53">2022-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/20/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/" title="抽象类和接口"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抽象类和接口"/></a><div class="content"><a class="title" href="/2022/11/20/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/" title="抽象类和接口">抽象类和接口</a><time datetime="2022-11-20T04:03:42.000Z" title="发表于 2022-11-20 12:03:42">2022-11-20</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 爱敲bug的程序猿</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div>+    - <canvas id="universe"></canvas> +    - <script defer src="/js/universe.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://npm.elemecdn.com/hexo-butterfly-clock/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://npm.elemecdn.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
